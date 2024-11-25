@@ -1,8 +1,12 @@
 <?php
 
-use App\Solid\SRP\Bus;
-use App\Solid\SRP\Driver;
-use App\Solid\SRP\Route;
+use App\Solid\OCP\Bus;
+use App\Solid\OCP\Car;
+use App\Solid\OCP\Trip;
+use App\Solid\OCP\Plane;
+use App\Solid\OCP\Route;
+use App\Solid\OCP\Driver;
+use App\Solid\OCP\MoveOnTheRoads;
 
 require_once "vendor" . DIRECTORY_SEPARATOR . "autoload.php";
 
@@ -28,12 +32,22 @@ $route90 = new Route(
 $bus = new Bus(201);
 $bus->setColor("red");
 $bus->setDriver($Eslam);
-$bus->setDoors(3);
+// $bus->setDoors(3);
 $bus->setMaxSpeed(140);
-$bus->setNumberOfPassengers(63);
+// $bus->setNumberOfPassengers(63);
 $bus->addRoute($route80);
 $bus->addRoute($route90);
+$bus->setMovable(new MoveOnTheRoads());
 
 // echo "<pre>";
 // var_dump($bus);
-echo $bus->move();
+// echo $bus->move();
+
+$trip = new Trip(
+    $bus,
+    "R220",
+    35.25,
+    130
+);
+
+echo $trip->move();
